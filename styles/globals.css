@@ -9,3 +9,31 @@ body {
   color: white;
   background: #121212;
 }
+
+.primary {
+  @apply text-white;
+}
+
+.secondary {
+  @apply text-[#dfa84d]
+}
+
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+
+.win {
+  @apply bg-green-400 text-slate-900;
+}
+
+.loss {
+  @apply bg-red-400 text-slate-900;
+}
+
+.label {
+  @apply rounded-xl p-1
+}
+
+.level {
+  @apply bg-slate-900 text-white
+}

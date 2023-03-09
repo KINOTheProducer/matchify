@@ -56,7 +56,7 @@ export default function Home() {
           value={summonerName}
           onChange={(e) => setSummonerName(e.target.value)}
           placeholder="eg. Doublelift" />
-        <button type="submit" onClick={getSummonerData}>
+        <button className="btn" type="submit" onClick={getSummonerData}>
           Search
         </button>
       </form>
@@ -72,14 +72,45 @@ export default function Home() {
 
                 {matches.map((matches) => {
                   return (
-                    <div className="flex flex-col place-content-center items-center text-center" key={matches.id}>
+                    <div className="flex flex-row space-x-14 m-5 place-content-center items-center text-center" key={matches.id}>
+                      <div className="flex flex-col place-content-center items-center text-center">
 
-                      <Image
-                        width={100}
-                        height={100}
-                        src={matches.championIcon}
-                        alt={matches.champion}
-                        className="rounded-full object-none" />
+                        <div className={`${matches.win
+                          ? 'rounded-full border-4 border-green-400'
+                          : 'rounded-full border-4 border-red-400'
+                          }`}>
+                          <Image
+                            width={100}
+                            height={100}
+                            src={matches.championIcon}
+                            alt={matches.champion}
+                            className="rounded-full object-none" />
+                        </div>
+
+                        <div className="w-8 h-8 py-1 place-content-center items-center text-center absolute pb-[10rem] pl-12 ">
+                          <h2 className="level p-0.5 font-semibold rounded-full w-8 h-8 border-2">
+                            {matches.level}
+                          </h2>
+                        </div>
+
+                        <div className="w-10 h-10 py-1 place-content-center items-center text-center absolute pt-[1.6rem]">
+                          {matches.win
+                            ?
+                            <h2 className="label win font-bold text-sm">Win</h2>
+                            :
+                            <h2 className="label loss font-bold text-sm">Loss</h2>}
+                        </div>
+
+                        <div className="place-content-center items-center text-center mt-3">
+                          <h2 className="font-semibold">{matches.champion}</h2>
+                          <h2 className="text-sm">{matches.duration}</h2>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col place-content-center items-center text-center">
+                        <h2 className="font-bold text-xl">{matches.kills} / {matches.deaths} / {matches.assists}</h2>
+                        <h2 className="text-sm">{matches.kda} KDA</h2>
+                      </div>
                     </div>
                   )
                 })}
