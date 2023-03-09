@@ -14,6 +14,8 @@ export default async function handler(req, res) {
     // setting a blank array to store the match information that we will grab and send to our frontend
     const matches = [];
 
+
+
     // creating a loop that will go through each match individually and return more detailed information
     // we will this information to find the info we need for the queried match, and only return what we want to show on the frontend
     for (let i = 0; i < matchListData.length; i++) {
@@ -34,6 +36,7 @@ export default async function handler(req, res) {
             // this way, we will only grab the information pertinent to the queried user
             if (player.summonerName.toLowerCase() === summonerName.toLowerCase()) {
                 const match = {
+                    puuid: puuid,
                     id: data.info.gameId,
                     duration: durationString,
                     name: player.summonerName,

@@ -11,11 +11,19 @@ body {
 }
 
 .primary {
-  @apply text-white;
+  @apply text-white bg-[#121212];
+}
+
+.primary-bg {
+  @apply bg-white text-[#121212];
 }
 
 .secondary {
-  @apply text-[#dfa84d]
+  @apply text-[#dfa84d] bg-[#121212]
+}
+
+.secondary-bg {
+  @apply bg-[#dfa84d] text-[#121212]
 }
 
 .btn {

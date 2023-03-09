@@ -43,9 +43,9 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col content-center items-center">
+    <div className="flex flex-col w-full h-full place-content-center content-center items-center align-center">
       <form
-        className="flex flex-col content-center items-center mt-10 space-y-2"
+        className="flex flex-col content-center items-center space-y-2"
         onSubmit={formSubmit}>
         <label>
           Summoner Name:
@@ -56,7 +56,7 @@ export default function Home() {
           value={summonerName}
           onChange={(e) => setSummonerName(e.target.value)}
           placeholder="eg. Doublelift" />
-        <button className="btn" type="submit" onClick={getSummonerData}>
+        <button className="btn secondary-bg" type="submit" onClick={getSummonerData}>
           Search
         </button>
       </form>
@@ -117,6 +117,65 @@ export default function Home() {
                         <h2 className="font-semibold text-lg">{matches.creeps} CS</h2>
                         <h4 className="text-sm">({matches.creepsPerMin}/min)</h4>
                       </div>
+
+                      <div className="flex flex-col space-y-1">
+                        <div className="flex flex-row">
+                          Items:
+                        </div>
+                        <div className="flex flex-row w-auto h-auto space-x-1">
+                          {matches.item1 && (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={matches.item1}
+                              alt="First Item"
+                            />
+                          )}
+                          {matches.item2 && (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={matches.item2}
+                              alt="Second Item"
+                            />
+                          )}
+                          {matches.item3 && (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={matches.item3}
+                              alt="Third Item"
+                            />
+                          )}
+                        </div>
+                        <div className="flex flex-row w-auto h-auto space-x-1">
+                          {matches.item4 && (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={matches.item4}
+                              alt="Fourth Item"
+                            />
+                          )}
+                          {matches.item5 && (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={matches.item5}
+                              alt="Fifth Item"
+                            />
+                          )}
+                          {matches.item6 && (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={matches.item6}
+                              alt="Sixth Item"
+                            />
+                          )}
+                        </div>
+                      </div>
+
                     </div>
                   )
                 })}
