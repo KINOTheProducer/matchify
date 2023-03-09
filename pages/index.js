@@ -43,13 +43,15 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col w-full h-full place-content-center content-center items-center align-center">
+    <div className="flex flex-col w-full h-full m-auto place-content-center content-center items-center align-middle justify-center">
+      <h1 className="text-7xl font-bold text-center secondary mt-10">matchify.</h1>
+      <h2 className="text-xl font-semibold text center mt-4">Enter a summoner name below:</h2>
       <form
-        className="flex flex-col content-center items-center space-y-2"
+        className="flex flex-col content-center items-center space-y-2 align-middle justify-center w-50 h-100 mt-5 mb-10"
         onSubmit={formSubmit}>
-        <label>
+        {/* <label>
           Summoner Name:
-        </label>
+        </label> */}
         <input
           className="flex flex-row content-center items-center text-center border-white border-2 rounded-md"
           type="text"
@@ -72,111 +74,114 @@ export default function Home() {
 
                 {matches.map((matches) => {
                   return (
-                    <div className="flex flex-row space-x-14 m-5 place-content-center items-center text-center" key={matches.id}>
-                      <div className="flex flex-col place-content-center items-center text-center">
+                    <>
+                      <div className="flex flex-row space-x-14 m-5 place-content-center items-center text-center" key={matches.id}>
+                        <div className="flex flex-col place-content-center items-center text-center">
 
-                        <div className={`${matches.win
-                          ? 'rounded-full border-4 border-green-400'
-                          : 'rounded-full border-4 border-red-400'
-                          }`}>
-                          <Image
-                            width={100}
-                            height={100}
-                            src={matches.championIcon}
-                            alt={matches.champion}
-                            className="rounded-full object-none" />
+                          <div className={`${matches.win
+                            ? 'rounded-full border-4 border-green-400'
+                            : 'rounded-full border-4 border-red-400'
+                            }`}>
+                            <Image
+                              width={100}
+                              height={100}
+                              src={matches.championIcon}
+                              alt={matches.champion}
+                              className="rounded-full object-none" />
+                          </div>
+
+                          <div className="w-8 h-8 py-1 place-content-center items-center text-center absolute pb-[8rem] pl-7 scale-75 md:scale-100 md:pb-[10rem] md:pl-12 ">
+                            <h2 className="level p-0.5 font-semibold rounded-full w-8 h-8 border-2">
+                              {matches.level}
+                            </h2>
+                          </div>
+
+                          <div className="w-10 h-10 py-1 place-content-center items-center text-center absolute md:pt-[1.6rem]">
+                            {matches.win
+                              ?
+                              <h2 className="label win font-bold text-sm">Win</h2>
+                              :
+                              <h2 className="label loss font-bold text-sm">Loss</h2>}
+                          </div>
+
+                          <div className="place-content-center items-center text-center mt-3">
+                            <h2 className="font-semibold">{matches.champion}</h2>
+                            <h2 className="text-sm">{matches.duration}</h2>
+                          </div>
                         </div>
 
-                        <div className="w-8 h-8 py-1 place-content-center items-center text-center absolute pb-[10rem] pl-12 ">
-                          <h2 className="level p-0.5 font-semibold rounded-full w-8 h-8 border-2">
-                            {matches.level}
-                          </h2>
+                        <div className="flex flex-col place-content-center items-center text-center">
+                          <h2 className="font-bold text-lg md:text-xl">{matches.kills} / {matches.deaths} / {matches.assists}</h2>
+                          <h2 className="text-sm">{matches.kda} KDA</h2>
+
                         </div>
 
-                        <div className="w-10 h-10 py-1 place-content-center items-center text-center absolute pt-[1.6rem]">
-                          {matches.win
-                            ?
-                            <h2 className="label win font-bold text-sm">Win</h2>
-                            :
-                            <h2 className="label loss font-bold text-sm">Loss</h2>}
+                        <div className="flex flex-col place-content-center items-center text-center">
+                          <h2 className="font-semibold text-lg">{matches.creeps} CS</h2>
+                          <h4 className="text-sm">({matches.creepsPerMin}/min)</h4>
                         </div>
 
-                        <div className="place-content-center items-center text-center mt-3">
-                          <h2 className="font-semibold">{matches.champion}</h2>
-                          <h2 className="text-sm">{matches.duration}</h2>
+                        <div className="flex flex-col space-y-1">
+                          <div className="flex flex-row">
+                            Items:
+                          </div>
+                          <div className="flex flex-row w-auto h-auto space-x-1">
+                            {matches.item1 && (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={matches.item1}
+                                alt="First Item"
+                              />
+                            )}
+                            {matches.item2 && (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={matches.item2}
+                                alt="Second Item"
+                              />
+                            )}
+                            {matches.item3 && (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={matches.item3}
+                                alt="Third Item"
+                              />
+                            )}
+                          </div>
+                          <div className="flex flex-row w-auto h-auto space-x-1">
+                            {matches.item4 && (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={matches.item4}
+                                alt="Fourth Item"
+                              />
+                            )}
+                            {matches.item5 && (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={matches.item5}
+                                alt="Fifth Item"
+                              />
+                            )}
+                            {matches.item6 && (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={matches.item6}
+                                alt="Sixth Item"
+                              />
+                            )}
+                          </div>
                         </div>
+
                       </div>
-
-                      <div className="flex flex-col place-content-center items-center text-center">
-                        <h2 className="font-bold text-xl">{matches.kills} / {matches.deaths} / {matches.assists}</h2>
-                        <h2 className="text-sm">{matches.kda} KDA</h2>
-
-                      </div>
-
-                      <div className="flex flex-col place-content-center items-center text-center">
-                        <h2 className="font-semibold text-lg">{matches.creeps} CS</h2>
-                        <h4 className="text-sm">({matches.creepsPerMin}/min)</h4>
-                      </div>
-
-                      <div className="flex flex-col space-y-1">
-                        <div className="flex flex-row">
-                          Items:
-                        </div>
-                        <div className="flex flex-row w-auto h-auto space-x-1">
-                          {matches.item1 && (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={matches.item1}
-                              alt="First Item"
-                            />
-                          )}
-                          {matches.item2 && (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={matches.item2}
-                              alt="Second Item"
-                            />
-                          )}
-                          {matches.item3 && (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={matches.item3}
-                              alt="Third Item"
-                            />
-                          )}
-                        </div>
-                        <div className="flex flex-row w-auto h-auto space-x-1">
-                          {matches.item4 && (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={matches.item4}
-                              alt="Fourth Item"
-                            />
-                          )}
-                          {matches.item5 && (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={matches.item5}
-                              alt="Fifth Item"
-                            />
-                          )}
-                          {matches.item6 && (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={matches.item6}
-                              alt="Sixth Item"
-                            />
-                          )}
-                        </div>
-                      </div>
-
-                    </div>
+                      <hr className="w-[30vw]" />
+                    </>
                   )
                 })}
               </div>

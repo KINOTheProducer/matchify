@@ -1,6 +1,6 @@
-// initially, we will be running the user's query through Riot's summoners endpoint - this will return the summoner's info
-// we will extract the puuid identifier from that information
-// we will plug that into the matches endpoint to return the match IDs for the last 5 games they've played
+// initially, I will be running the user's query through Riot's summoners endpoint - this will return the summoner's info
+// This way, I can extract the puuid identifier from that information
+// I can take that and plug it into the matches endpoint to return the match IDs for the last 5 games they've played
 
 export default async function handler(req, res) {
     const { summonerName } = req.query;
@@ -14,10 +14,8 @@ export default async function handler(req, res) {
     // setting a blank array to store the match information that we will grab and send to our frontend
     const matches = [];
 
-
-
     // creating a loop that will go through each match individually and return more detailed information
-    // we will this information to find the info we need for the queried match, and only return what we want to show on the frontend
+    // I will use this information to find the info we need for the queried match, and only return what we want to show on the frontend
     for (let i = 0; i < matchListData.length; i++) {
         const response = await fetch(`https://americas.api.riotgames.com/lol/match/v5/matches/${matchListData[i]}?api_key=${api}`);
         const data = await response.json();
@@ -62,7 +60,7 @@ export default async function handler(req, res) {
                 }
                 console.log(match.item1)
                 // I will then push all the data we just grabbed about the user's matches into the matches array
-                // this is done to quickly be able to access that on the frontend with a map function of the array
+                // this is done so we're able to access that on the frontend with a map on the array
                 matches.push(match);
                 break;
             }

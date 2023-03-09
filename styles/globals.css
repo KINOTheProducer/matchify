@@ -2,16 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  padding: 0;
+  margin: 0;
+}
+
 html {
   color-scheme: dark;
+  height: 100%
 }
 body {
   color: white;
   background: #121212;
+  height: 100%
 }
 
 .primary {
-  @apply text-white bg-[#121212];
+  @apply text-white;
 }
 
 .primary-bg {
@@ -19,7 +26,7 @@ body {
 }
 
 .secondary {
-  @apply text-[#dfa84d] bg-[#121212]
+  @apply text-[#dfa84d]
 }
 
 .secondary-bg {
