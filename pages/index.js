@@ -110,6 +110,12 @@ export default function Home() {
                       <div className="flex flex-col place-content-center items-center text-center">
                         <h2 className="font-bold text-xl">{matches.kills} / {matches.deaths} / {matches.assists}</h2>
                         <h2 className="text-sm">{matches.kda} KDA</h2>
+
+                      </div>
+
+                      <div className="flex flex-col place-content-center items-center text-center">
+                        <h2 className="font-semibold text-lg">{matches.creeps} CS</h2>
+                        <h4 className="text-sm">({matches.creepsPerMin}/min)</h4>
                       </div>
                     </div>
                   )

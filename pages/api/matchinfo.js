@@ -46,8 +46,18 @@ export default async function handler(req, res) {
                     kda: +Math.abs((player.kills + player.assists) / player.deaths).toFixed(1),
                     win: player.win,
                     creeps: player.totalMinionsKilled + player.neutralMinionsKilled,
-                    creepsPerMin: +((player.totalMinionsKilled + player.neutralMinionsKilled) / (durationMin + (durationSec / 60))).toFixed(1)
+                    creepsPerMin: +((player.totalMinionsKilled + player.neutralMinionsKilled) / (durationMin + (durationSec / 60))).toFixed(1),
+
+                    // here i will iterate through each of the items in the user had
+                    // if the ID is above 0, I will grab the icon for the item (this is to prevent broken images, ID of 0 is not a valid item)
+                    item1: player.item0 > 0 ? `https://ddragon.leagueoflegends.com/cdn/13.4.1/img/item/${player.item0}.png` : null,
+                    item2: player.item1 > 0 ? `https://ddragon.leagueoflegends.com/cdn/13.4.1/img/item/${player.item1}.png` : null,
+                    item3: player.item2 > 0 ? `https://ddragon.leagueoflegends.com/cdn/13.4.1/img/item/${player.item2}.png` : null,
+                    item4: player.item3 > 0 ? `https://ddragon.leagueoflegends.com/cdn/13.4.1/img/item/${player.item3}.png` : null,
+                    item5: player.item4 > 0 ? `https://ddragon.leagueoflegends.com/cdn/13.4.1/img/item/${player.item4}.png` : null,
+                    item6: player.item5 > 0 ? `https://ddragon.leagueoflegends.com/cdn/13.4.1/img/item/${player.item5}.png` : null,
                 }
+                console.log(match.item1)
                 // I will then push all the data we just grabbed about the user's matches into the matches array
                 // this is done to quickly be able to access that on the frontend with a map function of the array
                 matches.push(match);
