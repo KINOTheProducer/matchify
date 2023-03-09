@@ -5,6 +5,20 @@ export default function Home() {
   const [matches, setMatches] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const getSummonerData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `api/matchinfo?summonerName=${summonerName}`
+      );
+      const data = await response.json();
+      setMatches(data.matches);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="flex flex-col content-center items-center">
       <form className="flex flex-col content-center items-center mt-10 space-y-2">
@@ -17,7 +31,7 @@ export default function Home() {
           value={summonerName}
           onChange={(e) => setSummonerName(e.target.value)}
           placeholder="eg. Doublelift" />
-        <button type="submit">
+        <button type="submit" onClick={getSummonerData}>
           Search
         </button>
       </form>
