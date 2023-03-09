@@ -7,11 +7,9 @@ export default async function handler(req, res) {
     const api = process.env.NEXT_PUBLIC_RIOT_API_KEY;
     const response = await fetch(`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${api}`);
     const data = await response.json();
-    console.log(data)
     const puuid = data.puuid;
     const matchListResponse = await fetch(`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=5&api_key=${api}`);
     const matchListData = await matchListResponse.json();
-    console.log(matchListData);
 
     // setting a blank array to store the match information that we will grab and send to our frontend
     const matches = [];
@@ -27,7 +25,6 @@ export default async function handler(req, res) {
         const durationMin = Math.floor(durationRaw / 60);
         const durationSec = durationRaw % 60;
         const durationString = `${durationMin}m ${durationSec}s`;
-        console.log(durationString)
 
         // creating a nested loop here to look through the match info by participant ID
         for (const participantId in data.info.participants) {
@@ -54,9 +51,9 @@ export default async function handler(req, res) {
                 // I will then push all the data we just grabbed about the user's matches into the matches array
                 // this is done to quickly be able to access that on the frontend with a map function of the array
                 matches.push(match);
-                console.log(match)
                 break;
             }
         }
     }
+    res.status(200).json({ matches });
 }
