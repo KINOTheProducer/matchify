@@ -28,5 +28,35 @@ export default async function handler(req, res) {
         const durationSec = durationRaw % 60;
         const durationString = `${durationMin}m ${durationSec}s`;
         console.log(durationString)
+
+        // creating a nested loop here to look through the match info by participant ID
+        for (const participantId in data.info.participants) {
+            const player = data.info.participants[participantId];
+
+            // once we have the player's participant ID, we can do a logic check to see if the player is the queried user
+            // this way, we will only grab the information pertinent to the queried user
+            if (player.summonerName.toLowerCase() === summonerName.toLowerCase()) {
+                const match = {
+                    id: data.info.gameId,
+                    duration: durationString,
+                    name: player.summonerName,
+                    champion: player.championName,
+                    championIcon: `https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/${player.championName}.png`,
+                    level: player.champLevel,
+                    kills: player.kills,
+                    assists: player.assists,
+                    deaths: player.deaths,
+                    kda: +Math.abs((player.kills + player.assists) / player.deaths).toFixed(1),
+                    win: player.win,
+                    creeps: player.totalMinionsKilled + player.neutralMinionsKilled,
+                    creepsPerMin: +((player.totalMinionsKilled + player.neutralMinionsKilled) / (durationMin + (durationSec / 60))).toFixed(1)
+                }
+                // I will then push all the data we just grabbed about the user's matches into the matches array
+                // this is done to quickly be able to access that on the frontend with a map function of the array
+                matches.push(match);
+                console.log(match)
+                break;
+            }
+        }
     }
 }
